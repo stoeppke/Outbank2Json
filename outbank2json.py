@@ -27,8 +27,14 @@ def read_outbank_csv(filename_outbank_csv=None):
 
 
 if __name__ == '__main__':
-    # filename = sys.argv[1]
-    filename = "./sample.csv"
+    filename = sys.argv[1]
     if not os.path.isfile(filename):
         raise ValueError("File dose not exists")
-    print(json.dumps(read_outbank_csv(filename), sort_keys=True, indent=4))
+    # second cmd argument can optional pass the target file name to write json to.
+    # Instead the input file name will be used, and a .json will be appended
+    try:
+        filename_output = sys.argv[2]
+    except IndexError:
+        filename_output = filename + ".json"
+    with open(filename_output, 'w', encoding='utf-8') as output_file:
+        json.dump(read_outbank_csv(filename), output_file, ensure_ascii=False)
