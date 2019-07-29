@@ -42,8 +42,10 @@ def read_outbank_csv(filename_outbank_csv=None):
 
 
 if __name__ == '__main__':
-    # filename = "./sample.csv"
-    filename = sys.argv[1]
+    try:
+        filename = sys.argv[1]
+    except IndexError:
+        filename = "./sample.csv"
     if not os.path.isfile(filename):
         raise ValueError("File dose not exists")
     # second cmd argument can optional pass the target file name to write json to.

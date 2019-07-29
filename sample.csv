@@ -1,0 +1,5 @@
+#;Konto;Datum;Valuta;Betrag;Währung;Name;Nummer;Bank;Zweck;Kategorie;Unterkategorie;Tags;Notiz;Abweichender Zahlungsempfänger;Originalbetrag;Entgelt;Wechselkurs;Buchungsschlüssel;Buchungstext;Art der Zahlung;SEPA Referenz;Kundenreferenz;Mandatsreferenz;Gläubiger ID;Status;Empfänger;Absender;Steuer;Steuer (Währung);Land (Versandadresse);Gesamtbetrag;Gesamtbetrag (Währung);Bankname
+1;DE17200483271262511800;29.07.19;29.07.19;-250,00;EUR;"John Dowe";"DE67100110012620785542";"NTSBDEB1XXX";"Übertrag / Überweisung Umbuchung End-To-End-Ref.: Nicht Angegeben Ref. Ik2094357823";"Finanzen";"Umbuchung";"#Umbuchung";;;;;;"820";;;;;;;;;;;;;;;
+2;DE17200483271262511800;28.07.19;;-25,97;EUR;;;;"Ullrich Berlin-Zoo Berlin";"Lebenshaltung";"Lebensmittel";"#lebensmittel #party #freunde";;;"-25,97";;"1";;;;;;;;;;;;;;;;
+3;user@gmail.com;27.07.19;;-2,99;EUR;"iTunes and App Store";;;;"Lebenshaltung";"Onlinedienst";"#cloudspeicher";;;;;;;"Payment";;;;;;"Completed";"Paypal_uk_itunes_eur@apple.com";"user@gmail.com";0,00;EUR;;-2,99;EUR;
+4;DE67100114492810712642;27.07.19;;-2,79;EUR;;;;"Lidl Vertriebs GmbH & Berlin";"Freizeit";"Nachtleben";;;;"-2,79";;"1";;;;;;;;;;;;;;;;
