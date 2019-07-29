@@ -18,15 +18,21 @@ def read_outbank_csv(filename_outbank_csv=None):
         for csv_line in csv_reader:
             single_return_line = {}
             for index, header in enumerate(headers):
+                if 'Betrag' in header:
+                    single_return_line[header] = float(csv_line[index].replace('.', '').replace(',', '.'))
+                    continue
+
                 if 'Tags' in header:
                     single_return_line[header] = csv_line[index].split()
-                else:
-                    single_return_line[header] = csv_line[index]
+                    continue
+
+                single_return_line[header] = csv_line[index]
             return_json.append(single_return_line)
     return return_json
 
 
 if __name__ == '__main__':
+    # filename = "./sample.csv"
     filename = sys.argv[1]
     if not os.path.isfile(filename):
         raise ValueError("File dose not exists")
