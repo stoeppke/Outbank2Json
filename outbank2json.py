@@ -19,7 +19,7 @@ def read_outbank_csv(filename_outbank_csv=None):
             single_return_line = {}
             for index, header in enumerate(headers):
                 if 'Tags' in header:
-                    single_return_line[header] = csv_line[index]  # todo Split tags into list sep by space
+                    single_return_line[header] = csv_line[index].split()
                 else:
                     single_return_line[header] = csv_line[index]
             return_json.append(single_return_line)
