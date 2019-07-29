@@ -3,6 +3,7 @@ import sys
 import os.path
 import csv
 import json
+from datetime import datetime
 
 
 def read_outbank_csv(filename_outbank_csv=None):
@@ -18,7 +19,16 @@ def read_outbank_csv(filename_outbank_csv=None):
         for csv_line in csv_reader:
             single_return_line = {}
             for index, header in enumerate(headers):
-                if 'Betrag' in header:
+                if 'Datum' in header and csv_line[index]:
+                    single_return_line[header] = datetime.strptime(csv_line[index], '%d.%m.%y').isoformat()
+                    continue
+                if 'Valuta' in header and csv_line[index]:
+                    single_return_line[header] = datetime.strptime(csv_line[index], '%d.%m.%y').isoformat()
+                    continue
+                if 'Betrag' in header and csv_line[index]:
+                    single_return_line[header] = float(csv_line[index].replace('.', '').replace(',', '.'))
+                    continue
+                if 'Originalbetrag' in header and csv_line[index]:
                     single_return_line[header] = float(csv_line[index].replace('.', '').replace(',', '.'))
                     continue
 
