@@ -3,6 +3,7 @@ import sys
 import os.path
 import csv
 import json
+from datetime import datetime
 
 
 def read_outbank_csv(filename_outbank_csv=None):
@@ -18,17 +19,40 @@ def read_outbank_csv(filename_outbank_csv=None):
         for csv_line in csv_reader:
             single_return_line = {}
             for index, header in enumerate(headers):
+                if 'Datum' in header and csv_line[index]:
+                    single_return_line[header] = datetime.strptime(csv_line[index], '%d.%m.%y').isoformat()
+                    continue
+                if 'Valuta' in header and csv_line[index]:
+                    single_return_line[header] = datetime.strptime(csv_line[index], '%d.%m.%y').isoformat()
+                    continue
+                if 'Betrag' in header and csv_line[index]:
+                    single_return_line[header] = float(csv_line[index].replace('.', '').replace(',', '.'))
+                    continue
+                if 'Originalbetrag' in header and csv_line[index]:
+                    single_return_line[header] = float(csv_line[index].replace('.', '').replace(',', '.'))
+                    continue
+
                 if 'Tags' in header:
-                    single_return_line[header] = csv_line[index]  # todo Split tags into list sep by space
-                else:
-                    single_return_line[header] = csv_line[index]
+                    single_return_line[header] = csv_line[index].split()
+                    continue
+
+                single_return_line[header] = csv_line[index]
             return_json.append(single_return_line)
     return return_json
 
 
 if __name__ == '__main__':
-    # filename = sys.argv[1]
-    filename = "./sample.csv"
+    try:
+        filename = sys.argv[1]
+    except IndexError:
+        filename = "./sample.csv"
     if not os.path.isfile(filename):
         raise ValueError("File dose not exists")
-    print(json.dumps(read_outbank_csv(filename), sort_keys=True, indent=4))
+    # second cmd argument can optional pass the target file name to write json to.
+    # Instead the input file name will be used, and a .json will be appended
+    try:
+        filename_output = sys.argv[2]
+    except IndexError:
+        filename_output = filename + ".json"
+    with open(filename_output, 'w', encoding='utf-8') as output_file:
+        json.dump(read_outbank_csv(filename), output_file, ensure_ascii=False)
